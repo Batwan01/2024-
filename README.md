@@ -18,7 +18,6 @@
 
 - "자율주행 기술개발 혁신사업"을 통해 구축한 자율주행 공개 데이터셋을 활용하여 자율주행차-인프라 연계형 AI 기술 개발 합니다.
 - 객체 복합 상태 인식을 주 목표로 진행합니다.
-<img src="https://github.com/user-attachments/assets/b00931b3-b909-4b48-9c2d-997fbac671f0" width="50%" />
 
 ## :clipboard: 일정
 | 날짜 | 구분 |
