@@ -14,10 +14,11 @@
 !-->
 ---
 
-## 💡 [프로젝트 소개](https://www.auto-dna.org/page/?M2_IDX=32625)
+##  :sunglasses:팀원 소개
 
-- "자율주행 기술개발 혁신사업"을 통해 구축한 자율주행 공개 데이터셋을 활용하여 자율주행차-인프라 연계형 AI 기술 개발 합니다.
-- 객체 복합 상태 인식을 주 목표로 진행합니다.
+| [![](https://avatars.githubusercontent.com/jung0228)](https://github.com/jung0228) | [![](https://avatars.githubusercontent.com/chan-note)](https://github.com/chan-note) | [![](https://avatars.githubusercontent.com/batwan01)](https://github.com/batwan01) | [![](https://avatars.githubusercontent.com/jhuni17)](https://github.com/jhuni17) |
+| ---------------------------------------------------- | ------------------------------------------------------ | --------------------------------------------------- | ------------------------------------------------------- |
+| [정현우](https://github.com/jung0228)   |   [임찬혁](https://github.com/chan-note)     | [박지완](https://github.com/batwan01)          | [최재훈](https://github.com/jhuni17) |
 
 ## :clipboard: 일정
 | 날짜 | 구분 |
@@ -28,11 +29,14 @@
 | 11.08 | 심사 결과 |
 | 11월 중순 | 시상식 |
 
-##  :sunglasses:팀원 소개
+## 💡 [프로젝트 소개](https://www.auto-dna.org/page/?M2_IDX=32625)
 
-| [![](https://avatars.githubusercontent.com/jung0228)](https://github.com/jung0228) | [![](https://avatars.githubusercontent.com/chan-note)](https://github.com/chan-note) | [![](https://avatars.githubusercontent.com/batwan01)](https://github.com/batwan01) | [![](https://avatars.githubusercontent.com/jhuni17)](https://github.com/jhuni17) |
-| ---------------------------------------------------- | ------------------------------------------------------ | --------------------------------------------------- | ------------------------------------------------------- |
-| [정현우](https://github.com/jung0228)   |   [임찬혁](https://github.com/chan-note)     | [박지완](https://github.com/batwan01)          | [최재훈](https://github.com/jhuni17) |
+![image](https://github.com/user-attachments/assets/cefe96f3-7780-4f05-941b-73594447ace4)
+
+- "자율주행 기술개발 혁신사업"을 통해 구축한 자율주행 공개 데이터셋을 활용하여 자율주행차-인프라 연계형 AI 기술 개발 합니다.
+- 객체 복합 상태 인식을 주 목표로 진행합니다.
+
+
 
 ## 개발 주제
 | 주제 | 난이도 | 내용 |
