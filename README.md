@@ -50,7 +50,7 @@
 
 - **데이터셋 이름**: 차량상태인식 ( 객체 복합상태인식 및 인스턴스 세그멘테이션 데이터셋 )
 - **출처**: [차량상태인식 다운로드 링크](https://nanum.etri.re.kr/share/kimjy/ObjectStateDetectionAIchallenge2024?lang=ko_KR)
-- 
+  
 ## 데이터셋 설명
 - 자율주행 차량에서 전방의 차량, 버스를 2D-Bounding Box로 위치를 표현하고, 해당객체의 분류(Class), 의미론적 위치(Location), 후미등 상태(Action)를 분류하는 동시에 Instance Segmentation을 위한 인공지능 학습 데이터셋
 - 자율주행 센서 데이터 수집차량을 이용한 수집 데이터( 제네시스 G80, IONIQ5, Carnival )
