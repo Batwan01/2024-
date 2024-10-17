@@ -2,6 +2,25 @@
     <img src="https://capsule-render.vercel.app/api?type=waving&color=auto&height=300&section=header&text=2024%20자율주행%20인공지능%20챌린지&fontSize=50&animation=fadeIn&fontAlignY=38&desc=2024%20Autonomous%20Driving%20Artificial%20Intelligence%20Challenge&descAlignY=51&descAlign=62"/>
 </p>
 
+## 참고
+train 21533
+val 21534
+
+| 커밋 유형 | 의미 |
+| :-: | -|
+|feat|	새로운 기능 추가|
+|fix|	버그 수정|
+|docs	|문서 수정|
+|style|	코드 formatting, 세미콜론 누락, 코드 자체의 변경이 없는 경우|
+|refactor	|코드 리팩토링|
+|test|	테스트 코드, 리팩토링 테스트 코드 추가|
+|chore|	패키지 매니저 수정, 그 외 기타 수정 ex) .gitignore|
+|design|	CSS 등 사용자 UI 디자인 변경|
+|comment	|필요한 주석 추가 및 변경|
+|rename|	파일 또는 폴더 명을 수정하거나 옮기는 작업만인 경우|
+|remove|	파일을 삭제하는 작업만 수행한 경우|
+|!BREAKING |CHANGE	커다란 API 변경의 경우|
+|!HOTFIX	|급하게 치명적인 버그를 고쳐야 하는 경우|
 <!--
 <div align="center">     
   <a href="https://hits.seeyoufarm.com"><img src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https://github.com/Batwan01/2024-Autonomous-Driving-Artificial-Intelligence-Challenge&count_bg=%23B8B8B8&title_bg=%23555555&icon=&icon_color=%23E7E7E7&title=hits&edge_flat=false"/></a>
