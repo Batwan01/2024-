@@ -9,6 +9,8 @@ from mmengine.runner import Runner
 
 from mmdet.utils import setup_cache_size_limit_of_dynamo
 
+import sys
+sys.path.append('..')
 
 def parse_args():
     parser = argparse.ArgumentParser(description='Train a detector')

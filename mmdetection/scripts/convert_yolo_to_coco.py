@@ -49,7 +49,7 @@ def yolo2coco(input_path, classes_file, output_json, image_dir):
             
             images.append({
                 "id": image_id,
-                "file_name": image_filename,
+                "file_name": f"train/images/{image_filename}",  # 'train/images/' 추가
                 "width": width,
                 "height": height
             })
@@ -86,14 +86,18 @@ def split_train_val(coco_data, split_image):
     train_data = defaultdict(list)
     val_data = defaultdict(list)
     
+    split_image_full = f"train/images/{split_image}"
+    
     for img in coco_data['images']:
-        if img['file_name'] <= split_image:
+        if img['file_name'] <= split_image_full:
             train_data['images'].append(img)
         else:
             val_data['images'].append(img)
     
+    train_image_ids = set(img['id'] for img in train_data['images'])
+    
     for ann in coco_data['annotations']:
-        if any(img['id'] == ann['image_id'] for img in train_data['images']):
+        if ann['image_id'] in train_image_ids:
             train_data['annotations'].append(ann)
         else:
             val_data['annotations'].append(ann)
@@ -102,6 +106,7 @@ def split_train_val(coco_data, split_image):
     val_data['categories'] = coco_data['categories']
     
     return dict(train_data), dict(val_data)
+
 
 def create_test_coco(test_image_dir, output_json):
     images = []
@@ -114,7 +119,7 @@ def create_test_coco(test_image_dir, output_json):
             
             images.append({
                 "id": image_id,
-                "file_name": filename,
+                "file_name": f"test/images/{filename}",  # 'test/images/' 추가
                 "width": width,
                 "height": height
             })
@@ -144,6 +149,13 @@ with open(output_json, 'r') as f:
 
 # train과 val 분리
 train_data, val_data = split_train_val(coco_data, '00021533.jpg')
+
+# 데이터 확인
+print(f"Train images: {len(train_data['images'])}")
+print(f"Train annotations: {len(train_data['annotations'])}")
+print(f"Val images: {len(val_data['images'])}")
+print(f"Val annotations: {len(val_data['annotations'])}")
+
 
 # train_coco.json과 val_coco.json 저장
 with open('../../tld_db/json/train_coco.json', 'w') as f:
