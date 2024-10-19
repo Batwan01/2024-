@@ -1,4 +1,9 @@
 __pycache__
 tld_db/
 work_dirs/
+wandb/
+CV Object Detection/
+
 *.pth
+*.pt
+nohup.out
