@@ -1,4 +1,6 @@
 __pycache__
 tld_db/
 work_dirs/
+
 *.pth
+*.pt
