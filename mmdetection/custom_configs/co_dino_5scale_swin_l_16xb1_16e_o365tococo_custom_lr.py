@@ -15,7 +15,7 @@ dataset_type = 'CocoDataset'
 default_hooks = dict(
     checkpoint=dict(
         interval=1, max_keep_ckpts=1, save_best='auto', type='CheckpointHook'),
-    logger=dict(_scope_='mmdet', interval=1, type='LoggerHook'),
+    logger=dict(_scope_='mmdet', interval=50, type='LoggerHook'),
     param_scheduler=dict(_scope_='mmdet', type='ParamSchedulerHook'),
     sampler_seed=dict(_scope_='mmdet', type='DistSamplerSeedHook'),
     timer=dict(_scope_='mmdet', type='IterTimerHook'),
@@ -27,10 +27,10 @@ env_cfg = dict(
     dist_cfg=dict(backend='nccl'),
     mp_cfg=dict(mp_start_method='fork', opencv_num_threads=0))
 image_size = (
-    1024,
-    1024,
+    1380,
+    1380,
 )
-load_from = '../checkpoints/best_coco_bbox_mAP_epoch_2.pth'
+load_from = '../checkpoints/best_coco_bbox_mAP_epoch_3.pth'
 load_pipeline = [
     dict(type='LoadImageFromFile'),
     dict(type='LoadAnnotations', with_bbox=True, with_mask=True),
@@ -72,7 +72,7 @@ log_level = 'INFO'
 log_processor = dict(
     _scope_='mmdet', by_epoch=True, type='LogProcessor', window_size=50)
 loss_lambda = 2.0
-max_epochs = 1
+max_epochs = 5
 max_iters = 270000
 metainfo = dict(
     classes=(
@@ -439,7 +439,7 @@ num_classes = 14
 num_dec_layer = 6
 optim_wrapper = dict(
     clip_grad=dict(max_norm=0.1, norm_type=2),
-    optimizer=dict(lr=0.0001, type='AdamW', weight_decay=0.0001),
+    optimizer=dict(lr=0.00001, type='AdamW', weight_decay=0.0001),
     paramwise_cfg=dict(custom_keys=dict(backbone=dict(lr_mult=0.1))),
     type='OptimWrapper')
 param_scheduler = [
