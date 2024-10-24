@@ -16,7 +16,7 @@ env_cfg = dict(
     cudnn_benchmark=False,
     dist_cfg=dict(backend='nccl'),
     mp_cfg=dict(mp_start_method='fork', opencv_num_threads=0))
-load_from = None
+load_from = '../checkpoints/dino-5scale_swin-l_8xb2-12e_coco_20230228_072924-a654145f.pth'
 log_level = 'INFO'
 log_processor = dict(by_epoch=True, type='LogProcessor', window_size=50)
 max_epochs = 1
