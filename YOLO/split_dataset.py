@@ -2,10 +2,10 @@ import os
 import shutil
 
 # 디렉토리 경로 설정
-train_images_dir = "/data/ephemeral/home/jiwan/dataset_car/train/images"
-train_labels_dir = "/data/ephemeral/home/jiwan/dataset_car/train/labels"
-val_images_dir = "/data/ephemeral/home/jiwan/dataset_car/val/images"
-val_labels_dir = "/data/ephemeral/home/jiwan/dataset_car/val/labels"
+train_images_dir = "/data/ephemeral/home/dataset/train/images"
+train_labels_dir = "/data/ephemeral/home/dataset/train/labels"
+val_images_dir = "/data/ephemeral/home/dataset/val/images"
+val_labels_dir = "/data/ephemeral/home/dataset/val/labels"
 
 # 이동할 파일 번호 범위 설정
 start_num = 21534
