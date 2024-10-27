@@ -2,6 +2,7 @@
 import argparse
 import os
 import os.path as osp
+import torch
 
 from mmengine.config import Config, DictAction
 from mmengine.registry import RUNNERS
@@ -65,6 +66,11 @@ def main():
     # Reduce the number of repeated compilations and improve
     # training speed.
     setup_cache_size_limit_of_dynamo()
+
+    torch.cuda.set_device(1)
+    device = torch.device(f'cuda:{1}')
+    print(f"is_available cuda : {torch.cuda.is_available()}")
+    print(f"current use : cuda({torch.cuda.current_device()})\n")
 
     # load config
     cfg = Config.fromfile(args.config)

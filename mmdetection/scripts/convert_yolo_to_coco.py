@@ -136,10 +136,10 @@ def create_test_coco(test_image_dir, output_json):
         json.dump(coco_format, f)
 
 # 실행
-input_path = '../../tld_db/train/labels'
-classes_file = '../../tld_db/train/classes.txt'
-output_json = '../../tld_db/json/train_coco.json'
-image_dir = '../../tld_db/train/images'
+input_path = '/hdd1/lim_data/tld_db/train/labels'
+classes_file = '/hdd1/lim_data/tld_db/train/classes.txt'
+output_json = '/hdd1/lim_data/tld_db/json/train_coco.json'
+image_dir = '/hdd1/lim_data/tld_db/train/images'
 
 yolo2coco(input_path, classes_file, output_json, image_dir)
 

@@ -16,7 +16,7 @@ cfg.train_dataloader.num_workers = 8
 
 cfg.model.backbone.frozen_stages = -1
 
-cfg.max_epochs = 12
+cfg.max_epochs = 3
 cfg.train_cfg.max_epochs = cfg.max_epochs
 
 cfg.metainfo = {
@@ -25,7 +25,7 @@ cfg.metainfo = {
                 "bus_go", "bus_noSign", "bus_stop", "bus_warning")
 }
 
-cfg.data_root = '../../tld_db'
+cfg.data_root = '/hdd1/lim_data/tld_db'
 cfg.train_dataloader.dataset.dataset.ann_file = 'json/train_coco.json'
 cfg.train_dataloader.dataset.dataset.data_root = cfg.data_root
 cfg.train_dataloader.dataset.dataset.data_prefix.img = ''

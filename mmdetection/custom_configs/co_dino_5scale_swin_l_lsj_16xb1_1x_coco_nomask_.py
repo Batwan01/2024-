@@ -10,7 +10,7 @@ custom_imports = dict(
     allow_failed_imports=False, imports=[
         'projects.CO-DETR.codetr',
     ])
-data_root = '../../tld_db'
+data_root = '/hdd1/lim_data/tld_db'
 dataset_type = 'CocoDataset'
 default_hooks = dict(
     checkpoint=dict(
@@ -72,7 +72,7 @@ log_level = 'INFO'
 log_processor = dict(
     _scope_='mmdet', by_epoch=True, type='LogProcessor', window_size=50)
 loss_lambda = 2.0
-max_epochs = 12
+max_epochs = 3
 max_iters = 270000
 metainfo = dict(
     classes=(
@@ -468,7 +468,7 @@ test_dataloader = dict(
         ann_file='json/val_coco.json',
         backend_args=None,
         data_prefix=dict(img=''),
-        data_root='../../tld_db',
+        data_root='/hdd1/lim_data/tld_db',
         metainfo=dict(
             classes=(
                 'veh_go',
@@ -522,7 +522,7 @@ test_dataloader = dict(
     sampler=dict(_scope_='mmdet', shuffle=False, type='DefaultSampler'))
 test_evaluator = dict(
     _scope_='mmdet',
-    ann_file='../../tld_db/json/val_coco.json',
+    ann_file='/hdd1/lim_data/tld_db/json/val_coco.json',
     backend_args=None,
     format_only=False,
     metric='bbox',
@@ -552,7 +552,7 @@ test_pipeline = [
         ),
         type='PackDetInputs'),
 ]
-train_cfg = dict(max_epochs=12, type='EpochBasedTrainLoop', val_interval=1)
+train_cfg = dict(max_epochs=3, type='EpochBasedTrainLoop', val_interval=1)
 train_dataloader = dict(
     batch_size=1,
     dataset=dict(
@@ -561,7 +561,7 @@ train_dataloader = dict(
             ann_file='json/train_coco.json',
             backend_args=None,
             data_prefix=dict(img=''),
-            data_root='../../tld_db',
+            data_root='/hdd1/lim_data/tld_db',
             filter_cfg=dict(filter_empty_gt=False, min_size=32),
             metainfo=dict(
                 classes=(
@@ -641,7 +641,7 @@ val_dataloader = dict(
         ann_file='json/val_coco.json',
         backend_args=None,
         data_prefix=dict(img=''),
-        data_root='../../tld_db',
+        data_root='/hdd1/lim_data/tld_db',
         metainfo=dict(
             classes=(
                 'veh_go',
@@ -695,7 +695,7 @@ val_dataloader = dict(
     sampler=dict(_scope_='mmdet', shuffle=False, type='DefaultSampler'))
 val_evaluator = dict(
     _scope_='mmdet',
-    ann_file='../../tld_db/json/val_coco.json',
+    ann_file='/hdd1/lim_data/tld_db/json/val_coco.json',
     backend_args=None,
     format_only=False,
     metric='bbox',
