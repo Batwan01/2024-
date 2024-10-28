@@ -5,19 +5,19 @@ import sys
 sys.path.append('..')
 
 # 기본 설정 파일 로드
-config_name = 'co_dino_5scale_swin_l_16xb1_16e_o365tococo_custom'
+config_name = 'co_dino_5scale_vit_large_coco_custom'
 cfg = Config.fromfile(f'../projects/CO-DETR/configs/codino/{config_name}.py')
 
 # 사용자 정의 설정
-cfg.load_from = '../checkpoints/co_dino_5scale_swin_large_16e_o365tococo-614254c9.pth'
+cfg.load_from = '../checkpoints/co-detr-vit-large-coco.pth'
 
 cfg.train_dataloader.batch_size = 1
 cfg.train_dataloader.num_workers = 8
 
 cfg.model.backbone.frozen_stages = -1
 
-cfg.max_epochs = 16
-cfg.train_cfg.max_epochs = cfg.max_epochs
+# cfg.max_epochs = 16
+# cfg.train_cfg.max_epochs = cfg.max_epochs
 
 cfg.metainfo = {
     'classes': ("veh_go", "veh_goLeft", "veh_noSign", "veh_stop", "veh_stopLeft",
