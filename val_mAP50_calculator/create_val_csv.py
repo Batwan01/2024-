@@ -22,16 +22,26 @@ def convert_coco_to_pascal_voc(coco_file, output_csv):
         pascal_voc_annotation = f"{category_id} 1.0 {x_min} {y_min} {x_max} {y_max}"
         image_annotations[image_id].append(pascal_voc_annotation)
 
+    # 이미지 정보를 리스트로 변환하고 파일명(숫자)으로 정렬
+    image_info = []
+    for image in coco_data['images']:
+        file_name = image['file_name'].split('/')[-1]  # 파일 이름만 추출
+        image_id = image['id']
+        annotations = image_annotations[image_id]
+        prediction_string = ' '.join(annotations)
+        # 파일명에서 확장자를 제외한 숫자 부분을 추출하여 정수로 변환
+        image_number = int(file_name.split('.')[0])
+        image_info.append((image_number, file_name, prediction_string))
+
+    # 이미지 번호로 정렬
+    image_info.sort(key=lambda x: x[0])
+
     # CSV 파일 작성
     with open(output_csv, 'w', newline='') as csvfile:
         writer = csv.writer(csvfile)
         writer.writerow(['PredictionString', 'image_id'])
 
-        for image in coco_data['images']:
-            image_id = image['id']
-            file_name = image['file_name'].split('/')[-1]  # 파일 이름만 추출
-            annotations = image_annotations[image_id]
-            prediction_string = ' '.join(annotations)
+        for _, file_name, prediction_string in image_info:
             writer.writerow([prediction_string, file_name])
 
     print(f"CSV 파일이 생성되었습니다: {output_csv}")
