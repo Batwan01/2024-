@@ -4,6 +4,7 @@ work_dirs/
 output/
 EDA/
 
+*.out
 *.pth
 *.pt
 *.csv
