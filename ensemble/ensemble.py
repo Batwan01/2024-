@@ -2,6 +2,7 @@ import pandas as pd
 import numpy as np
 from ensemble_boxes import nms, soft_nms, non_maximum_weighted, weighted_boxes_fusion
 from pycocotools.coco import COCO
+from tqdm import tqdm
 import os
 import argparse
 
@@ -20,19 +21,30 @@ def main(fusion_method='nms', iou_thr=0.6, weights=None):
     image_ids = submission_df[0]['image_id'].tolist()
 
     # 테스트 데이터 JSON 파일 경로 설정
-    annotation = '../dataset/json/test.json'
+    annotation = '../tld_db/json/val_coco.json'
     coco = COCO(annotation)
 
     prediction_strings = []
     file_names = []
 
     # 각 이미지에 대해 앙상블 수행
-    for i, image_id in enumerate(image_ids):
+    print(f"\nPerforming {fusion_method} ensemble...")
+    for image_id in tqdm(image_ids, desc="Ensemble Progress"):
         prediction_string = ''
         boxes_list = []
         scores_list = []
         labels_list = []
-        image_info = coco.loadImgs(i)[0]
+
+        # COCO 이미지 정보 로드
+        image_info = None
+        for img in coco.dataset['images']:
+            if os.path.basename(img['file_name']) == image_id:
+                image_info = img
+                break
+                
+        if image_info is None:
+            print(f"Warning: Image info not found for {image_id}")
+            continue
 
         # 각 모델(CSV 파일)의 예측 결과 처리
         for df in submission_df:
