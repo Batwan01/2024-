@@ -1,7 +1,8 @@
 __pycache__
 tld_db/
 work_dirs/
+output/
+EDA/
 
 *.pth
 *.pt
-EDA/
