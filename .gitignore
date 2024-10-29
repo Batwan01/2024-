@@ -1,7 +1,11 @@
 __pycache__
 tld_db/
 work_dirs/
+output/
+EDA/
+csv/
 
+*.out
 *.pth
 *.pt
-EDA/
+*.csv
