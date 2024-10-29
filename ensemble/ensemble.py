@@ -11,8 +11,8 @@ from mAP50_calculator import calculate_map50
 def main(fusion_method='nms', iou_thr=0.6, weights=None):
     # ensemble할 csv 파일들
     submission_files = [
-        './csv/Co-DETR(SwinL, lsj, 3ep)_val.csv',
-        './csv/Dino(1ep)_val.csv',
+        # './csv/Co-DETR(SwinL, lsj, 3ep)_val.csv',
+        # './csv/Dino(1ep)_val.csv',
         './csv/Co-DETR(Obj365, 1ep)_val.csv',
         './csv/Co-DETR(Obj365, 2ep)_val.csv',
         './csv/Co-DETR(Obj365, 3ep)_val.csv',
@@ -130,6 +130,6 @@ if __name__ == "__main__":
     
     # mAP 50 계산
     gt_path = "./csv/val_ground_truth.csv"
-    pred_path = "./output/nmw_ensemble.csv"
+    pred_path = f"./output/{args.method}_ensemble.csv"
     
     mAP = calculate_map50(gt_path, pred_path)
