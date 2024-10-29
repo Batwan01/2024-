@@ -50,7 +50,7 @@ def main():
         # 결과를 리스트에 추가
         results.append({
             'PredictionString': " ".join(prediction_string),  # 모든 예측을 하나의 문자열로 결합
-            'image_id': f'test/{image_name}'  # 이미지 ID 형식 지정
+            'image_id': image_name  # 이미지 이름만 저장
         })
 
     # 데이터프레임 생성
