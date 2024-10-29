@@ -2,14 +2,15 @@ import os
 import pandas as pd
 from PIL import Image
 
-txt_dir = "/Users/imch/workspace/2024-Autonomous-Driving-Artificial-Intelligence-Challenge/test_txt/predictions"
-output_dir = "/Users/imch/workspace/2024-Autonomous-Driving-Artificial-Intelligence-Challenge/test_csv"
-csv_output_path = os.path.join(output_dir, "test.csv")
-train_data_path = "/Users/imch/workspace/2024-autonomous-driving-artificial-intelligence-challenge/tld_db/train/images"
-test_data_path = "/Users/imch/workspace/2024-autonomous-driving-artificial-intelligence-challenge/tld_db/test/images"
+txt_dir = "/Users/imch/workspace/2024-Autonomous-Driving-Artificial-Intelligence-Challenge/test_txt/predictions" # 입력 txt 파일있는 디렉토리
+output_dir = "/Users/imch/workspace/2024-Autonomous-Driving-Artificial-Intelligence-Challenge/test_csv" # 결과물 저장 디렉토리
+csv_name = "test.csv" # 결과물 이름
+csv_output_path = os.path.join(output_dir, csv_name) # 결과물 저장 경로
+train_data_path = "/Users/imch/workspace/2024-autonomous-driving-artificial-intelligence-challenge/tld_db/train/images" # train, validation 이미지 경로
+test_data_path = "/Users/imch/workspace/2024-autonomous-driving-artificial-intelligence-challenge/tld_db/test/images" # test 이미지 경로
 
-mode = 'train' # if train or validation csv = 'train' 
-                # if test csv = 'test'
+mode = 'train' # if train or validation csv = 'train' (validation 정답지용 만들 때 사용)
+                # if test csv = 'test' (test 제출용 만들 때 사용)
 
 # YOLO 형식의 TXT 파일을 파스칼 형식 CSV 파일로 변환하는 함수 정의
 def convert_txt_to_csv(txt_dir, csv_output_path, mode):
