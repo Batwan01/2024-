@@ -3,6 +3,7 @@ tld_db/
 work_dirs/
 output/
 EDA/
+csv/
 
 *.out
 *.pth
