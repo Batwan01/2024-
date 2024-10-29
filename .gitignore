@@ -10,3 +10,6 @@ csv/
 *.pt
 *.csv
 *.txt
+
+EDA/
+*.jpg

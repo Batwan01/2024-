@@ -5,7 +5,7 @@ from ultralytics import YOLO
 def write_to_csv(name, pred_str, csv_path):
     data = {
         "PredictionString": pred_str,  # Store the prediction string
-        "image_id": f'test/{name}'  # Store the image path
+        "image_id": name'  # Store the image path
     }
     
     with open(csv_path, mode="a", newline="") as f:
@@ -15,14 +15,14 @@ def write_to_csv(name, pred_str, csv_path):
         writer.writerow(data)  # Write the prediction data
 
 # Load the custom YOLO model
-model = YOLO("/data/ephemeral/home/jiwan/2024-Autonomous-Driving-Artificial-Intelligence-Challenge/YOLO/yolo/runs/detect/train2/weights/best.pt")
+model = YOLO("/data/ephemeral/home/jiwan/2024-Autonomous-Driving-Artificial-Intelligence-Challenge/YOLO/yolo/runs/detect/11x/best_yolo11x.pt")
 
 # Predict on the test dataset
-results = model("/data/ephemeral/home/dataset/test/images", save=True)
+results = model("/data/ephemeral/home/dataset/val/images", save=True)
 
 # Flag to save results to CSV
 save_csv = True
-csv_path = "predictions_yolo11l.csv"
+csv_path = "predictions_yolo11x_val.csv"
 
 # Process and save predictions
 for result in results:
