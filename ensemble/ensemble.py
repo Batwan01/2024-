@@ -6,12 +6,16 @@ from tqdm import tqdm
 import os
 import argparse
 
+from mAP50_calculator import calculate_map50
+
 def main(fusion_method='nms', iou_thr=0.6, weights=None):
     # ensemble할 csv 파일들
     submission_files = [
+        './csv/Co-DETR(SwinL, lsj, 3ep)_val.csv',
+        './csv/Dino(1ep)_val.csv',
         './csv/Co-DETR(Obj365, 1ep)_val.csv',
         './csv/Co-DETR(Obj365, 2ep)_val.csv',
-        './csv/Co-DETR(Obj365, 3ep)_val.csv'
+        './csv/Co-DETR(Obj365, 3ep)_val.csv',
     ]
 
     # CSV 파일들을 DataFrame으로 읽어오기
@@ -123,3 +127,9 @@ if __name__ == "__main__":
 
     # 앙상블 수행
     main(fusion_method=args.method, iou_thr=args.iou_thr, weights=args.weights)
+    
+    # mAP 50 계산
+    gt_path = "./csv/val_ground_truth.csv"
+    pred_path = "./output/nmw_ensemble.csv"
+    
+    mAP = calculate_map50(gt_path, pred_path)
