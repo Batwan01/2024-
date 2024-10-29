@@ -35,6 +35,11 @@ def parse_boxes(prediction_string):
 def calculate_map50(gt_path, pred_path):
     gt_df = pd.read_csv(gt_path)
     pred_df = pd.read_csv(pred_path)
+
+    CLASS_NAMES = ['veh_go', 'veh_goLeft', 'veh_noSign', 'veh_stop',
+                   'veh_stopLeft', 'veh_stopWarning', 'veh_warning',
+                   'ped_go', 'ped_noSign', 'ped_stop',
+                   'bus_go', 'bus_noSign', 'bus_stop', 'bus_warning']
     
     # 이미지 매칭 확인
     gt_images = set(gt_df['image_id'])
@@ -127,7 +132,7 @@ def calculate_map50(gt_path, pred_path):
         
         aps.append(ap)
         class_aps[class_id] = ap
-        print(f"Class {class_id} AP: {ap:.4f}")
+        print(f"Class {CLASS_NAMES[class_id]} AP: {ap:.4f}")
     
     mAP = np.mean(aps)
     print(f"\nmAP@50: {mAP:.4f}")
@@ -136,6 +141,6 @@ def calculate_map50(gt_path, pred_path):
 
 if __name__ == "__main__":
     gt_path = "./csv/val_ground_truth.csv"
-    pred_path = "./csv/nmw0.65(lsj, dino, Co-DETR(obj)1,2,3)(0.2 0.2 0.5 1 1).csv"
+    pred_path = "./output/nmw0.4(Co-DETR(obj)1,2,3)(0.5 1 1)0.6881_0.01filtered.csv"
     
     mAP = calculate_map50(gt_path, pred_path)
