@@ -102,7 +102,7 @@ def main():
     """
 
     torch.cuda.set_device(1)
-    device = torch.device(f'cuda:{1}')
+    # device = torch.device(f'cuda:{1}')
     print(f"is_available cuda : {torch.cuda.is_available()}")
     print(f"current use : cuda({torch.cuda.current_device()})\n")
 
@@ -114,16 +114,21 @@ def main():
     # cfg.optimizer = dict(type='AdamW', lr=0.0001, weight_decay=0.01)
 
     # cfg.optimizer_config.grad_clip = dict(max_norm=35, norm_type=2)                # gradient clipping 설정
-    cfg.data.samples_per_gpu = 4                                                 # 배치 크기 설정
+    cfg.data.samples_per_gpu = 2                                                 # 배치 크기 설정
     # cfg.runner = dict(type='EpochBasedRunner', max_epochs=18)                      # epoch 수 설정
     cfg.seed = 2022                                                                # 랜덤 시드 설정
     cfg.gpu_ids = [1]                                                              # 사용할 GPU 설정
-    cfg.device = torch.device("cuda:1")                                                     # 디바이스 설정 (GPU 또는 CPU)
+    cfg.device = 'cuda'                                                  # 디바이스 설정 (GPU 또는 CPU)
     cfg.checkpoint_config = dict(max_keep_ckpts=1, interval=1)
 
     # 내가한거임
     cfg.resume_from = None
     cfg.workflow = [('train', 1), ('val', 1)]
+
+    cfg.visualizer.vis_backends = [
+        dict(type='LocalVisBackend'),
+        dict(type='WandbVisBackend'), # wandb 시각화, 사용시 wandb 계정 필요, 사용하지 않을 시 주석처리
+    ]
 
 
     # TensorBoard 로그 및 텍스트 로그 설정
