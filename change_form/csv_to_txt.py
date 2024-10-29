@@ -23,7 +23,7 @@ import pandas as pd
 from PIL import Image
 
 csv_file_path = '/Users/imch/Downloads/Co-DETR(SwinL, lsj, 3ep)_val.csv'
-output_dir = "/Users/imch/workspace/2024-autonomous-driving-artificial-intelligence-challenge/yolo_txt_file/predictions"
+output_dir = "/Users/imch/workspace/2024-Autonomous-Driving-Artificial-Intelligence-Challenge/test_txt/predictions"
 train_data_path = "/Users/imch/workspace/2024-autonomous-driving-artificial-intelligence-challenge/tld_db/train/images"
 test_data_path = "/Users/imch/workspace/2024-autonomous-driving-artificial-intelligence-challenge/tld_db/test/images"
 

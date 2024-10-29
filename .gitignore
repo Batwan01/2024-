@@ -9,3 +9,4 @@ csv/
 *.pth
 *.pt
 *.csv
+*.txt
