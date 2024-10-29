@@ -137,10 +137,11 @@ def calculate_map50(gt_path, pred_path):
     mAP = np.mean(aps)
     print(f"\nmAP@50: {mAP:.4f}")
     
-    return mAP
+    return mAP, class_aps
 
 if __name__ == "__main__":
     gt_path = "./csv/val_ground_truth.csv"
-    pred_path = "./output/nmw0.4(Co-DETR(obj)1,2,3)(0.5 1 1)0.6881_0.01filtered.csv"
+    pred_path = "./csv/predictions_yolo11x_val_1280.csv"
     
-    mAP = calculate_map50(gt_path, pred_path)
+    mAP, _ = calculate_map50(gt_path, pred_path)
+    print(pred_path[pred_path.rfind('/')+1:])

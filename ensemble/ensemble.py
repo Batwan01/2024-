@@ -13,9 +13,11 @@ def main(fusion_method='nms', iou_thr=0.6, weights=None):
     submission_files = [
         # './csv/Co-DETR(SwinL, lsj, 3ep)_val.csv',
         # './csv/Dino(1ep)_val.csv',
+        './csv/Cascade-Rcnn(swinL, 2048, 2ep)_val.csv',
         './csv/Co-DETR(Obj365, 1ep)_val.csv',
         './csv/Co-DETR(Obj365, 2ep)_val.csv',
         './csv/Co-DETR(Obj365, 3ep)_val.csv',
+        # './output/nms0.6(Co-DETR(obj)1,2,3)0.683.csv'
     ]
 
     # CSV 파일들을 DataFrame으로 읽어오기
@@ -132,4 +134,4 @@ if __name__ == "__main__":
     gt_path = "./csv/val_ground_truth.csv"
     pred_path = f"./output/{args.method}_ensemble.csv"
     
-    mAP = calculate_map50(gt_path, pred_path)
+    mAP, _ = calculate_map50(gt_path, pred_path)
