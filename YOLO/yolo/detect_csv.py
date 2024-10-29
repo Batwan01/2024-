@@ -5,7 +5,7 @@ from ultralytics import YOLO
 def write_to_csv(name, pred_str, csv_path):
     data = {
         "PredictionString": pred_str,  # Store the prediction string
-        "image_id": f'test/{name}'  # Store the image path
+        "image_id": name'  # Store the image path
     }
     
     with open(csv_path, mode="a", newline="") as f:
