@@ -879,7 +879,6 @@ train_dataloader = dict(
     num_workers=8,
     persistent_workers=True,
     
-    # oversampling 클래스 별로 1개씩 추출
     sampler=dict(_scope_='mmdet', type='ClassAwareSampler', num_sample_class=1))
 
 train_pipeline = [
