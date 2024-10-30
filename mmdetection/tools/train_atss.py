@@ -121,15 +121,8 @@ def main():
     cfg.device = 'cuda'                                                  # 디바이스 설정 (GPU 또는 CPU)
     cfg.checkpoint_config = dict(max_keep_ckpts=1, interval=1)
 
-    # 내가한거임
     cfg.resume_from = None
-    cfg.workflow = [('train', 1), ('val', 1)]
-
-    cfg.visualizer.vis_backends = [
-        dict(type='LocalVisBackend'),
-        dict(type='WandbVisBackend'), # wandb 시각화, 사용시 wandb 계정 필요, 사용하지 않을 시 주석처리
-    ]
-
+    cfg.workflow = [('train', 1)]
 
     # TensorBoard 로그 및 텍스트 로그 설정
     cfg.log_config = dict(
@@ -158,7 +151,8 @@ def main():
     # Train과 Val 데이터셋 각각 빌드
     train_dataset = build_dataset(cfg.data.train)
     val_dataset = build_dataset(cfg.data.val)
-    datasets = [build_dataset(cfg.data.train), build_dataset(cfg.data.val)]
+    datasets = [train_dataset]
+    # datasets = [build_dataset(cfg.data.train), build_dataset(cfg.data.val)]
 
     # 모델 정의
     model = build_detector(cfg.model)
