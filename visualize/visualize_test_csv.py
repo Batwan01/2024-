@@ -12,8 +12,8 @@ matplotlib.use('Agg')
 
 # 설정
 data_root = '/Users/imch/workspace/2024-Autonomous-Driving-Artificial-Intelligence-Challenge/tld_db/test/images'  # 이미지 경로
-csv_path = '/Users/imch/workspace/2024-Autonomous-Driving-Artificial-Intelligence-Challenge/test_csv/nmw0.4(Co-DETR(obj365, 3ep), Cascade(5ep, 2ep_over), Co-DETR(obj, 2048, 1ep, over)_test_0filtered.csv'  # CSV 파일 경로
-save_dir = '/Users/imch/workspace/2024-Autonomous-Driving-Artificial-Intelligence-Challenge/visualize_image/test_leaderboard_4'
+csv_path = '/Users/imch/workspace/2024-Autonomous-Driving-Artificial-Intelligence-Challenge/test_csv/class_wise.csv'  # CSV 파일 경로
+save_dir = '/Users/imch/workspace/2024-Autonomous-Driving-Artificial-Intelligence-Challenge/visualize_image/test_class_wise'
 class_names = { 
     0: "veh_go", 1: "veh_goLeft", 2: "veh_noSign", 3: "veh_stop", 4: "veh_stopLeft", 
     5: "vef_stopWarning", 6: "veh_warning", 7: "ped_go", 8: "ped_noSign", 9: "ped_stop", 
