@@ -5,7 +5,7 @@ from ultralytics import YOLO
 def write_to_csv(name, pred_str, csv_path):
     data = {
         "PredictionString": pred_str,  # Store the prediction string
-        "image_id": f'test/{name}'  # Store the image path
+        "image_id": name  # Store the image path
     }
     
     with open(csv_path, mode="a", newline="") as f:
@@ -14,15 +14,18 @@ def write_to_csv(name, pred_str, csv_path):
             writer.writeheader()
         writer.writerow(data)  # Write the prediction data
 
-# Load the custom YOLO model
-model = YOLO("/data/ephemeral/home/jiwan/2024-Autonomous-Driving-Artificial-Intelligence-Challenge/YOLO/yolo/runs/detect/train/weights/best.pt")
+# 커스텀 YOLO 모델 로드
+model = YOLO("/data/ephemeral/home/jiwan/2024-Autonomous-Driving-Artificial-Intelligence-Challenge/YOLO/yolo/runs/detect/weight/best_yolo11x.pt")
 
-# Predict on the test dataset
-results = model("/data/ephemeral/home/dataset/test/images", save=True)
+# 예측을 진행할 이미지 경로
+image_folder_path = "/data/ephemeral/home/dataset/test/images"
+
+# 1024 해상도로 예측 (imgsz 인자를 추가)
+results = model(image_folder_path, save=True)
 
 # Flag to save results to CSV
 save_csv = True
-csv_path = "predictions_yolox.csv"
+csv_path = "/data/ephemeral/home/jiwan/2024-Autonomous-Driving-Artificial-Intelligence-Challenge/YOLO/yolo/runs/detect/result/predictions_yolov11x_test_1280.csv"
 
 # Process and save predictions
 for result in results:

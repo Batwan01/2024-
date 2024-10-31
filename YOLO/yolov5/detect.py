@@ -79,7 +79,7 @@ def run(
     view_img=False,  # show results
     save_txt=False,  # save results to *.txt
     save_format=0,  # save boxes coordinates in YOLO format or Pascal-VOC format (0 for YOLO and 1 for Pascal-VOC)
-    save_csv=False,  # save results in CSV format
+    save_csv=True,  # save results in CSV format
     save_conf=False,  # save confidences in --save-txt labels
     save_crop=False,  # save cropped prediction boxes
     nosave=False,  # do not save images/videos
@@ -216,14 +216,16 @@ def run(
         csv_path = save_dir / "predictions.csv"
 
         # Create or append to the CSV file
-        def write_to_csv(image_name, prediction, confidence):
-            """Writes prediction data for an image to a CSV file, appending if the file exists."""
-            data = {"Image Name": image_name, "Prediction": prediction, "Confidence": confidence}
+        def write_to_csv(name, pred_str):
+            data = {
+                "PredictionString": pred_str,  # 'PredictionString' 필드에 pred_str 저장
+                "image_id": name  # 'image_id' 필드에 이미지 경로 저장
+            }
             with open(csv_path, mode="a", newline="") as f:
-                writer = csv.DictWriter(f, fieldnames=data.keys())
-                if not csv_path.is_file():
-                    writer.writeheader()
-                writer.writerow(data)
+                writer = csv.DictWriter(f, fieldnames=["PredictionString", "image_id"])
+                if f.tell() == 0:  # 파일이 비어 있으면 헤더 작성
+                    writer.writeheader()  # 헤더 추가
+                writer.writerow(data)  # 데이터 작성
 
         # Process predictions
         for i, det in enumerate(pred):  # per image
@@ -250,16 +252,18 @@ def run(
                     n = (det[:, 5] == c).sum()  # detections per class
                     s += f"{n} {names[int(c)]}{'s' * (n > 1)}, "  # add to string
 
+                pred_str = ""
+
                 # Write results
                 for *xyxy, conf, cls in reversed(det):
                     c = int(cls)  # integer class
                     label = names[c] if hide_conf else f"{names[c]}"
-                    confidence = float(conf)
-                    confidence_str = f"{confidence:.2f}"
-
+                    #confidence = float(conf)
+                    #confidence_str = f"{confidence:.2f}"
                     if save_csv:
-                        write_to_csv(p.name, label, confidence_str)
-
+                        xyxy = [coord.item() for coord in xyxy]
+                        #write_to_csv(c, confidence, xyxy[0], xyxy[1], xyxy[2], xyxy[3])
+                        pred_str += f"{int(cls)} {conf} {xyxy[0]} {xyxy[1]} {xyxy[2]} {xyxy[3]} "
                     if save_txt:  # Write to file
                         if save_format == 0:
                             coords = (
@@ -278,6 +282,8 @@ def run(
                     if save_crop:
                         save_one_box(xyxy, imc, file=save_dir / "crops" / names[c] / f"{p.stem}.jpg", BGR=True)
 
+                write_to_csv(p.name, pred_str)
+                
             # Stream results
             im0 = annotator.result()
             if view_img:
