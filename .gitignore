@@ -5,6 +5,7 @@ output/
 EDA/
 csv/
 
+*.DS_Store
 *.out
 *.pth
 *.pt
