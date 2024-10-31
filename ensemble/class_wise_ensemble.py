@@ -8,33 +8,39 @@ def get_class_aps(csv_path, gt_path):
     """각 CSV 파일의 클래스별 AP를 계산"""
     print(f"\nCalculating APs for {os.path.basename(csv_path)}")
     _, class_aps = calculate_map50(gt_path, csv_path)
-    
-    # 모든 클래스에 대해 AP 값을 가져오되, 없는 경우 0으로 처리
-    return [class_aps.get(i, 0.0) for i in range(14)]  # 클래스 순서대로 AP 리스트 반환
+    return [class_aps.get(i, 0.0) for i in range(14)]
 
-def class_wise_ensemble():
-    # ensemble할 csv 파일들
-    submission_files = [
+def get_model_files():
+    """앙상블할 validation과 test 파일 경로 반환"""
+    val_files = [
         './csv/Co-DETR(Obj365, 1ep)_val.csv',
         './csv/Co-DETR(Obj365, 2ep)_val.csv',
         './csv/Co-DETR(Obj365, 3ep)_val.csv',
-        # './csv/Cascade-Rcnn(swinL, 2048, 2ep)_val.csv',
-        # './csv/predictions_yolo11x_val.csv',
-        # './csv/Cascade-Rcnn(swinL, 4096, 1ep)_val.csv',
-        # './csv/Dino(1ep)_val.csv',
-        # './csv/Co-DETR(SwinL, lsj, 3ep)_val.csv'
+        './csv/Cascade-Rcnn(swinL, 2048, 5ep)_val.csv',
+        './csv/Cascade-Rcnn(swinL, 2048, 2ep, oversampling)_val.csv',
+        './csv/Co-DETR(Obj365, 2024, oversampling, ep1)_val.csv',
     ]
-
-    print("Calculating class APs for each model...")
-    gt_path = "./csv/val_ground_truth.csv"
     
-    # 각 모델의 클래스별 AP 계산
+    test_files = [
+        './csv/Co-DETR(Obj365, 1ep)_test.csv',
+        './csv/Co-DETR(Obj365, 2ep)_test.csv',
+        './csv/Co-DETR(Obj365, 3ep)_test.csv',
+        './csv/Cascade-Rcnn(swinL, 2048, 5ep)_test.csv',
+        './csv/Cascade-Rcnn(swinL, 2048, 2ep, oversampling)_test.csv',
+        './csv/Co-DETR(Obj365, 2024, oversampling, ep1)_test.csv',
+    ]
+    
+    return val_files, test_files
+
+def get_best_models(val_files, gt_path):
+    """validation 데이터로 클래스별 베스트 모델 선정"""
+    print("Calculating class APs for each model...")
+    
     model_class_aps = []
-    for file in submission_files:
+    for file in val_files:
         class_aps = get_class_aps(file, gt_path)
         model_class_aps.append(class_aps)
         
-    # 각 클래스별로 가장 높은 AP를 가진 모델 선택
     class_best_model = {}
     CLASS_NAMES = ['veh_go', 'veh_goLeft', 'veh_noSign', 'veh_stop',
                    'veh_stopLeft', 'veh_stopWarning', 'veh_warning',
@@ -45,21 +51,23 @@ def class_wise_ensemble():
         aps = [model_aps[class_id] for model_aps in model_class_aps]
         best_model_idx = np.argmax(aps)
         class_best_model[class_id] = best_model_idx
-        print(f"Class {CLASS_NAMES[class_id]}: Best model = {os.path.basename(submission_files[best_model_idx])} (AP = {aps[best_model_idx]:.4f})")
+        print(f"Class {CLASS_NAMES[class_id]}: Best model = {os.path.basename(val_files[best_model_idx])} (AP = {aps[best_model_idx]:.4f})")
+    
+    return class_best_model
 
-    print("\nLoading CSV files...")
-    submission_df = [pd.read_csv(file) for file in submission_files]
+def ensemble_predictions(files, class_best_model, output_suffix):
+    """주어진 파일들에 대해 앙상블 수행"""
+    print(f"\nLoading {output_suffix} CSV files...")
+    submission_df = [pd.read_csv(file) for file in files]
     image_ids = submission_df[0]['image_id'].tolist()
 
     prediction_strings = []
     file_names = []
 
-    # 각 이미지에 대해 앙상블 수행
-    print("\nPerforming class-wise best model ensemble...")
+    print(f"\nPerforming class-wise best model ensemble for {output_suffix}...")
     for image_id in tqdm(image_ids, desc="Ensemble Progress"):
         prediction_string = ''
         
-        # 각 모델의 예측을 클래스별로 수집
         for model_idx, df in enumerate(submission_df):
             predict_string = df[df['image_id'] == image_id]['PredictionString'].tolist()[0]
             if pd.isna(predict_string):
@@ -70,31 +78,52 @@ def class_wise_ensemble():
                 predict_list = np.reshape(predict_list, (-1, 6))
                 for pred in predict_list:
                     class_id = int(pred[0])
-                    if model_idx == class_best_model[class_id]:  # 해당 클래스에 대해 best인 모델의 예측만 선택
+                    if model_idx == class_best_model[class_id]:
                         prediction_string += f"{' '.join(map(str, pred))} "
 
         prediction_strings.append(prediction_string.strip())
         file_names.append(image_id)
 
-    # 앙상블 결과를 DataFrame으로 저장
     submission = pd.DataFrame()
     submission['PredictionString'] = prediction_strings
     submission['image_id'] = file_names
 
-    # 결과 저장
     os.makedirs('./output', exist_ok=True)
-    model_names = '_'.join([os.path.splitext(os.path.basename(f))[0].split('_val')[0] for f in submission_files])
-    output_file = f'./output/class_wise_ensemble.csv'
+    output_file = f'./output/class_wise_ensemble_{output_suffix}.csv'
     submission.to_csv(output_file, index=False)
     print(f"Ensemble result saved to {output_file}")
     
     return output_file
 
-if __name__ == "__main__":
-    # 앙상블 수행
-    output_file = class_wise_ensemble()
-    
-    # 최종 mAP 50 계산
-    print("\nCalculating final mAP50...")
+def class_wise_ensemble(mode='val'):
+    """
+    클래스별 앙상블 수행
+    mode: 'val' (validation만), 'test' (validation으로 베스트모델 선정 후 test), 'both' (둘 다 수행)
+    """
+    val_files, test_files = get_model_files()
     gt_path = "./csv/val_ground_truth.csv"
-    mAP, _ = calculate_map50(gt_path, output_file)
+    
+    # Validation으로 베스트 모델 선정
+    class_best_model = get_best_models(val_files, gt_path)
+    
+    output_files = []
+    
+    # 모드에 따라 앙상블 수행
+    if mode in ['val', 'both']:
+        val_output = ensemble_predictions(val_files, class_best_model, 'val')
+        output_files.append(val_output)
+        
+        # validation mAP 계산
+        print("\nCalculating validation mAP50...")
+        mAP, _ = calculate_map50(gt_path, val_output)
+        print(f"Final validation mAP50: {mAP:.4f}")
+    
+    if mode in ['test', 'both']:
+        test_output = ensemble_predictions(test_files, class_best_model, 'test')
+        output_files.append(test_output)
+    
+    return output_files
+
+if __name__ == "__main__":
+    # 모드 선택: 'val', 'test', 'both'
+    output_files = class_wise_ensemble(mode='both')
