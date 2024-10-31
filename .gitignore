@@ -4,6 +4,7 @@ work_dirs/
 output/
 EDA/
 csv/
+*.DS_Store
 
 *.out
 *.pth
