@@ -16,7 +16,6 @@
 
 ## 💡 [프로젝트 소개](https://www.auto-dna.org/page/?M2_IDX=32625)
 
-![car](https://github.com/user-attachments/assets/1961d1b3-bb8e-4667-ad60-635691f8f65e)
 ![car2](https://github.com/user-attachments/assets/6aa66e77-47f2-401d-a70f-773f433247aa)
 
 - "자율주행 기술개발 혁신사업"을 통해 구축한 자율주행 공개 데이터셋을 활용하여 자율주행차-인프라 연계형 AI 기술 개발
