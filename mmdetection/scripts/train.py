@@ -2,6 +2,7 @@
 import argparse
 import os
 import os.path as osp
+import torch
 
 from mmengine.config import Config, DictAction
 from mmengine.registry import RUNNERS
@@ -14,7 +15,8 @@ sys.path.append('..')
 
 def parse_args():
     parser = argparse.ArgumentParser(description='Train a detector')
-    parser.add_argument('config', help='train config file path')
+    parser.add_argument('--config', help='train config file path')
+    parser.add_argument('--gpu', default=0)
     parser.add_argument('--work-dir', help='the dir to save logs and models')
     parser.add_argument(
         '--amp',
@@ -65,6 +67,11 @@ def main():
     # Reduce the number of repeated compilations and improve
     # training speed.
     setup_cache_size_limit_of_dynamo()
+
+    torch.cuda.set_device(1)
+    device = torch.device(f'cuda:{args.gpu}')
+    print(f"is_available cuda : {torch.cuda.is_available()}")
+    print(f"current use : cuda({torch.cuda.current_device()})\n")
 
     # load config
     cfg = Config.fromfile(args.config)
