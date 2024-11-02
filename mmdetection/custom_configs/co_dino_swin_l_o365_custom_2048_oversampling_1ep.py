@@ -1268,6 +1268,5 @@ visualizer = dict(
     type='DetLocalVisualizer',
     vis_backends=[
         dict(type='LocalVisBackend'),
-        dict(type='WandbVisBackend'),
     ])
 work_dir = '../work_dirs/co_dino_5scale_swin_l_16xb1_16e_o365tococo_custom_2048_oversampling'

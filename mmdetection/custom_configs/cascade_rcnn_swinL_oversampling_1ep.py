@@ -1126,7 +1126,6 @@ visualizer = dict(
     type='DetLocalVisualizer',
     vis_backends=[
         dict(type='LocalVisBackend'),
-        dict(type='WandbVisBackend'),
     ])
 work_dir = '../work_dirs/cascade_rcnn_oversampling_1ep'
 
