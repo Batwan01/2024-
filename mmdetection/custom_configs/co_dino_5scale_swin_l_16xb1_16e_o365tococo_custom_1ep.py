@@ -30,7 +30,8 @@ image_size = (
     1024,
     1024,
 )
-load_from = '../checkpoints/co_dino_5scale_swin_large_16e_o365tococo-614254c9.pth'
+# load_from = '../checkpoints/co_dino_5scale_swin_large_16e_o365tococo-614254c9.pth'
+load_from = 'https://download.openmmlab.com/mmdetection/v3.0/codetr/co_dino_5scale_swin_large_16e_o365tococo-614254c9.pth'
 load_pipeline = [
     dict(type='LoadImageFromFile'),
     dict(type='LoadAnnotations', with_bbox=True, with_mask=True),
