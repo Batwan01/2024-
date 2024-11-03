@@ -59,11 +59,6 @@
   
 ## Project TimeLine
 
-
-## Tools
-- Github
-- Notion
-
 ## Models
 
 | Model | Backbone | Pretrained dataset | Epochs | oversampling | Image size | val mAP50 |
