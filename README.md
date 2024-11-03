@@ -52,16 +52,16 @@
   
 ## Models
 
-| Model | Backbone | Pretrained dataset | Epochs | oversampling | Image size | val mAP50 |
+| Model | Backbone | Pre-trained | Epochs | oversampling | Image size | val mAP50 |
 | --- | --- | --- | --- | --- | --- | --- |
 | yolo | C3K2 | yolo11x | 20 | X | 1280x1280 | 0.6010 |
 | Co-DINO | Swin-L | Object365 | 1 | X | 1024x1024 | 0.6407 |
 | Co-DINO | Swin-L | Object365 | 2 | X | 1024x1024 | 0.6821 |
 | Co-DINO | Swin-L | Object365 | 3 | X | 1024x1024 | 0.6833 |
 | Co-DINO | Swin-L | Object365 |  | O | 1024x1024 | 0.6990 |
-| Cascade-RCNN | Swin-L | Object365 | 5 | X | 1024x1024 | 0.6819 |
-| Cascade-RCNN | Swin-L | Object365 | 2 | X | 1024x1024 |  |
-| Cascade-RCNN | Swin-L | Object365 | 2 | O | 1024x1024 | 0.6875 |
+| Cascade-RCNN | Swin-L | Object365,COCO | 5 | X | 1024x1024 | 0.6819 |
+| Cascade-RCNN | Swin-L | Object365,COCO | 2 | X | 1024x1024 | - |
+| Cascade-RCNN | Swin-L | Object365,COCO | 2 | O | 1024x1024 | 0.6875 |
 
 
 
