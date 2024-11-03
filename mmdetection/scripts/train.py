@@ -2,6 +2,7 @@
 import argparse
 import os
 import os.path as osp
+import torch
 
 from mmengine.config import Config, DictAction
 from mmengine.registry import RUNNERS
@@ -13,8 +14,10 @@ import sys
 sys.path.append('..')
 
 def parse_args():
+    torch.multiprocessing.set_start_method('spawn')
     parser = argparse.ArgumentParser(description='Train a detector')
-    parser.add_argument('config', help='train config file path')
+    parser.add_argument('--config', help='train config file path')
+    parser.add_argument('--gpu', default=0)
     parser.add_argument('--work-dir', help='the dir to save logs and models')
     parser.add_argument(
         '--amp',
@@ -66,8 +69,20 @@ def main():
     # training speed.
     setup_cache_size_limit_of_dynamo()
 
+    # gpu 단일 학습
+    torch.cuda.set_device(int(args.gpu))
+    device = torch.device(f'cuda:{args.gpu}')
+    print(f"is_available cuda : {torch.cuda.is_available()}")
+    print(f"current use : cuda({torch.cuda.current_device()})\n")
+
+    # gpu 병렬 학습
+    # device = torch.device(f'cuda:{args.local_rank}')
+    # torch.cuda.set_device(device)
+    # print(f"is_available cuda : {torch.cuda.is_available()}")
+    # print(f"current use : cuda({torch.cuda.current_device()})\n")
+
     # load config
-    cfg = Config.fromfile(args.config)
+    cfg = Config.fromfile(f"../custom_configs/{args.config}.py")
     cfg.launcher = args.launcher
     if args.cfg_options is not None:
         cfg.merge_from_dict(args.cfg_options)
@@ -79,7 +94,7 @@ def main():
     elif cfg.get('work_dir', None) is None:
         # use config filename as default work_dir if cfg.work_dir is None
         cfg.work_dir = osp.join('./work_dirs',
-                                osp.splitext(osp.basename(args.config))[0])
+                                osp.splitext(osp.basename(f"../custom_configs/{args.config}.py"))[0])
 
     # enable automatic-mixed-precision training
     if args.amp is True:

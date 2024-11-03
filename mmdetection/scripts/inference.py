@@ -2,19 +2,20 @@ import os
 import pandas as pd
 from mmdet.apis import init_detector, inference_detector
 from tqdm import tqdm
+import argparse
 
 import sys
 sys.path.append('..')
 
 def main():
     # 설정 파일 및 체크포인트 파일 경로
-    config_name = 'deformable-detr-refine-twostage_r50_16xb2-50e_coco_trash'
+    config_name = args.config_name
     config_file = f'../custom_configs/{config_name}.py'  # 모델 설정 파일 경로
-    checkpoint_file = f'../checkpoints/best_coco_bbox_mAP_epoch_1.pth'
+    checkpoint_file = f"../checkpoints/{config_name}.pth"
 
     # 이미지 경로 및 결과 저장 경로 설정
     image_folder = '../../tld_db/test/images'  # 테스트 이미지 폴더 경로
-    output_csv = f'../output/test_output.csv'  # 출력 CSV 파일 경로
+    output_csv = f'../../post_processing/csv/{config_name}_test_inference.csv'  # 출력 CSV 파일 경로
 
     # 모델 초기화
     print("Initializing model...")
@@ -63,4 +64,8 @@ def main():
     print(f"Inference complete. Results saved to {output_csv}")
 
 if __name__ == '__main__':
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--config_name', help='train config file path')
+
+    args = parser.parse_args()
     main()
