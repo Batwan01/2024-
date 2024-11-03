@@ -1270,4 +1270,4 @@ visualizer = dict(
     vis_backends=[
         dict(type='LocalVisBackend'),
     ])
-work_dir = '../work_dirs/co_dino_5scale_swin_l_16xb1_16e_o365tococo_custom_2048_oversampling'
+work_dir = '../work_dirs/co_dino_oversampling_1ep'
