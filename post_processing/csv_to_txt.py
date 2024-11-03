@@ -22,14 +22,14 @@ import os
 import pandas as pd
 from PIL import Image
 
-csv_file_path = '/Users/imch/Downloads/Co-DETR(SwinL, lsj, 3ep)_val.csv'  # 입력 csv 파일 경로
-txt_root_dir = "/Users/imch/workspace/2024-Autonomous-Driving-Artificial-Intelligence-Challenge/test_txt" # txt 저장될 root dir
+csv_file_path = './csv/class_wise_ensemble_test.csv'  # 최종 제출 파일
+txt_root_dir = "./" # txt 저장될 root dir
 txt_dir = "predictions" # txt 파일들이 담길 최종 dir 이름 (모델 이름 등으로하고 제출 할때 predictions 로 변경하면 편함)
 output_dir = os.path.join(txt_root_dir, txt_dir) # 최종 저장 경로
-train_data_path = "/Users/imch/workspace/2024-autonomous-driving-artificial-intelligence-challenge/tld_db/train/images" # train, validation 이미지 경로
-test_data_path = "/Users/imch/workspace/2024-autonomous-driving-artificial-intelligence-challenge/tld_db/test/images" # test 이미지 경로
+train_data_path = "../tld_db/train/images" # train, validation 이미지 경로
+test_data_path = "../tld_db/test/images" # test 이미지 경로
 
-mode = 'train' # if train or validation csv = 'train' (validation 정답지용 만들 때 사용)
+mode = 'test' # if train or validation csv = 'train' (validation 정답지용 만들 때 사용)
                 # if test csv = 'test' (test 제출용 만들 때 사용)
 
 # CSV 파일(파스칼 형식)을 TXT(YOLO 형식)으로 변환하는 함수 정의
@@ -82,4 +82,5 @@ def convert_csv_to_txt(csv_file_path, output_dir, mode):
         print(f"complete_{image_name}")
 
 # 예제 실행
+
 convert_csv_to_txt(csv_file_path, output_dir, mode)
