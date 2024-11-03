@@ -11,13 +11,10 @@ from mAP50_calculator import calculate_map50
 def main(fusion_method='nms', iou_thr=0.6, weights=None):
     # ensemble할 csv 파일들
     submission_files = [
-        # './csv/Co-DETR(SwinL, lsj, 3ep)_val.csv',
-        # './csv/Dino(1ep)_val.csv',
-        './csv/Cascade-Rcnn(swinL, 2048, 2ep)_val.csv',
-        './csv/Co-DETR(Obj365, 1ep)_val.csv',
-        './csv/Co-DETR(Obj365, 2ep)_val.csv',
-        './csv/Co-DETR(Obj365, 3ep)_val.csv',
-        # './output/nms0.6(Co-DETR(obj)1,2,3)0.683.csv'
+        './csv/co_dino_3ep_test_inference.csv',
+        './csv/cascade_5ep_test_inference.csv',
+        './csv/cascade_oversampling_2ep_test_inference.csv',
+        './csv/co_dino_oversampling_1ep_test_inference.csv',
     ]
 
     # CSV 파일들을 DataFrame으로 읽어오기
@@ -27,7 +24,7 @@ def main(fusion_method='nms', iou_thr=0.6, weights=None):
     image_ids = submission_df[0]['image_id'].tolist()
 
     # 테스트 데이터 JSON 파일 경로 설정
-    annotation = '../tld_db/json/val_coco.json'
+    annotation = '../tld_db/json/test_coco.json'
     coco = COCO(annotation)
 
     prediction_strings = []
@@ -108,8 +105,8 @@ def main(fusion_method='nms', iou_thr=0.6, weights=None):
     submission['image_id'] = file_names
 
     # 결과 저장
-    os.makedirs('./output', exist_ok=True)
-    output_file = f'./output/{fusion_method}_ensemble.csv'
+    os.makedirs('./csv', exist_ok=True)
+    output_file = f'./csv/{fusion_method}_ensemble.csv'
     submission.to_csv(output_file, index=False, quoting=1, quotechar='"', escapechar='\\')
     print(f"Ensemble result saved to {output_file}")
 
@@ -130,8 +127,3 @@ if __name__ == "__main__":
     # 앙상블 수행
     main(fusion_method=args.method, iou_thr=args.iou_thr, weights=args.weights)
     
-    # mAP 50 계산
-    gt_path = "./csv/val_ground_truth.csv"
-    pred_path = f"./output/{args.method}_ensemble.csv"
-    
-    mAP, _ = calculate_map50(gt_path, pred_path)

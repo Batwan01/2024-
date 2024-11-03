@@ -13,21 +13,21 @@ def get_class_aps(csv_path, gt_path):
 def get_model_files():
     """앙상블할 validation과 test 파일 경로 반환"""
     val_files = [
-        './csv/Co-DETR(Obj365, 1ep)_val.csv',
-        './csv/Co-DETR(Obj365, 2ep)_val.csv',
-        './csv/Co-DETR(Obj365, 3ep)_val.csv',
-        './csv/Cascade-Rcnn(swinL, 2048, 5ep)_val.csv',
-        './csv/Cascade-Rcnn(swinL, 2048, 2ep, oversampling)_val.csv',
-        './csv/Co-DETR(Obj365, 2024, oversampling, ep1)_val.csv',
+        './csv/co_dino_1ep_val_inference.csv',
+        './csv/co_dino_2ep_val_inference.csv',
+        './csv/co_dino_3ep_val_inference.csv',
+        './csv/cascade_5ep_val_inference.csv',
+        './csv/cascade_oversampling_2ep_val_inference.csv',
+        './csv/co_dino_oversampling_1ep_val_inference.csv',
     ]
     
     test_files = [
-        './csv/Co-DETR(Obj365, 1ep)_test.csv',
-        './csv/Co-DETR(Obj365, 2ep)_test.csv',
-        './csv/Co-DETR(Obj365, 3ep)_test.csv',
-        './csv/Cascade-Rcnn(swinL, 2048, 5ep)_test.csv',
-        './csv/Cascade-Rcnn(swinL, 2048, 2ep, oversampling)_test.csv',
-        './csv/Co-DETR(Obj365, 2024, oversampling, ep1)_test.csv',
+        './csv/co_dino_1ep_test_inference.csv',
+        './csv/co_dino_2ep_test_inference.csv',
+        './csv/co_dino_3ep_test_inference.csv',
+        './csv/cascade_5ep_test_inference.csv',
+        './csv/cascade_oversampling_2ep_test_inference.csv',
+        './csv/co_dino_oversampling_1ep_test_inference.csv',
     ]
     
     return val_files, test_files
@@ -88,8 +88,8 @@ def ensemble_predictions(files, class_best_model, output_suffix):
     submission['PredictionString'] = prediction_strings
     submission['image_id'] = file_names
 
-    os.makedirs('./output', exist_ok=True)
-    output_file = f'./output/class_wise_ensemble_{output_suffix}.csv'
+    os.makedirs('./csv', exist_ok=True)
+    output_file = f'./csv/class_wise_ensemble_{output_suffix}.csv'
     submission.to_csv(output_file, index=False)
     print(f"Ensemble result saved to {output_file}")
     
@@ -124,6 +124,6 @@ def class_wise_ensemble(mode='val'):
     
     return output_files
 
-if __name__ == "__main__":
+if __name__ == "__main__": 
     # 모드 선택: 'val', 'test', 'both'
     output_files = class_wise_ensemble(mode='both')

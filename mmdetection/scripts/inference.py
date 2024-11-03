@@ -15,7 +15,7 @@ def main():
 
     # 이미지 경로 및 결과 저장 경로 설정
     image_folder = '../../tld_db/test/images'  # 테스트 이미지 폴더 경로
-    output_csv = f'../output/{config_name}_inference.csv'  # 출력 CSV 파일 경로
+    output_csv = f'../../post_processing/csv/{config_name}_test_inference.csv'  # 출력 CSV 파일 경로
 
     # 모델 초기화
     print("Initializing model...")
