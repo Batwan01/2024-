@@ -44,9 +44,9 @@ def filter_low_confidence(input_csv, output_csv, confidence_threshold):
 if __name__ == "__main__":
     # 입력 및 출력 CSV 파일 경로 지정
     confidence_threshold = 0
-    csv_name = 'nmw0.4(Cascade(2048, 2ep), Co-DETR(obj)1, 2, 3)(1, 0.8, 1.2, 1.5)'
-    input_csv = f'./output/{csv_name}.csv'
-    output_csv = f'./output/{csv_name}_{confidence_threshold}filtered.csv'
+    csv_name = 'class_wise_ensemble_test'
+    input_csv = f'./csv/{csv_name}.csv'
+    output_csv = f'./csv/{csv_name}.csv'
     
 
     # 출력 디렉토리가 없으면 생성
