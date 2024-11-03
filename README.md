@@ -58,18 +58,7 @@
 |               | Warning (6)            |               | Warning (13)            |
   
 ## Project TimeLine
-| 순서 | 구분 |
-| :-: | - |
-| 1 | 기술 탐색 |
-| 2 | 원리 이해( 논문 참고 ) |
-| 3 | 코드 적용( git 참고 ) |
-| 4 | 실험 |
-| 5 | 결과 분석 |
-| * | 코드 정리 |
-| * | 문서 작성 |
-| * | 코드&알고리즘 리뷰 |
-| * | 재학습 Pipeline 구성 |
-| * | 추론 인프라 구성 |
+
 
 ## Tools
 - Github
@@ -89,12 +78,11 @@
 
 ## Ensemble
 
-| 앙상블 기법 | CascadeRCNN(2 ep) | CascadeRCNN(5 ep) | CascadeRCNN(over 2 ep) | Co-DETR(Obj 1ep) | Co-DETR(Obj 2ep) | Co-DETR(Obj 3ep) | Co-DETR(obj over 1ep) |  | Test mAP50 |
-| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| NMW | o |  |  | o | o | o |  |  | 0.6945 |
-| NMW |  | o | o |  |  | o | o |  | 0.7344 |
-| class wise |  |  |  |  |  |  |  |  |  |
-| NMW |  |  |  |  |  |  |  |  |  |
+| 앙상블 기법 | Co-DINO 1ep over | Co-DINO 1ep | Co-DINO 2ep | Co-DINO 3ep | Cascade-RCNN 5ep | Cascade-RCNN 2ep  | Cascade-RCNN 2ep over | Test mAP50 |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| NMW |  | o | o | o |  | o |  | 0.6945 |
+| NMW | o |  |  | o | o | o |  | 0.7344 |
+| Class-wise | o | o | o | o | o |  | o | 0.7362 |
 
 ## Results
 
