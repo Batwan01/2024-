@@ -77,11 +77,24 @@
 
 ## Models
 
-## Backbones
-
-## Augmentations
+| Model | Backbone | Epochs | oversampling | Image size | val mAP50 |
+| --- | --- | --- | --- | --- | --- |
+| yolo11x | SwinL | 20 | X | 1280x1280 | 0.60108 |
+| Co-DETR | Swin-L | 1 | X | 1024x1024 | 0.6407 |
+| Co-DETR | Swin-L | 2 | X | 1024x1024 | 0.6821 |
+| Co-DETR | Swin-L | 3 | X | 1024x1024 | 0.6833 |
+| Cascade-RCNN | Swin-L | 5 | X | 1024x1024 | 0.6819 |
+| Cascade-RCNN | Swin-L |  | O | 1024x1024 | 0.6875 |
+| Co-DINO | Swin-L |  | O | 1024x1024 | 0.6990 |
 
 ## Ensemble
+
+| 앙상블 기법 | CascadeRCNN(2 ep) | CascadeRCNN(5 ep) | CascadeRCNN(over 2 ep) | Co-DETR(Obj 1ep) | Co-DETR(Obj 2ep) | Co-DETR(Obj 3ep) | Co-DETR(obj over 1ep) |  | Test mAP50 |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| NMW | o |  |  | o | o | o |  |  | 0.6945 |
+| NMW |  | o | o |  |  | o | o |  | 0.7344 |
+| class wise |  |  |  |  |  |  |  |  |  |
+| NMW |  |  |  |  |  |  |  |  |  |
 
 ## Results
 
