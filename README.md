@@ -50,8 +50,6 @@
 |               | StopWarning (5)        |               | Stop (12)               |
 |               | Warning (6)            |               | Warning (13)            |
   
-## Project TimeLine
-
 ## Models
 
 | Model | Backbone | Pretrained dataset | Epochs | oversampling | Image size | val mAP50 |
