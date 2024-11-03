@@ -70,7 +70,7 @@ def main():
     setup_cache_size_limit_of_dynamo()
 
     # gpu 단일 학습
-    torch.cuda.set_device(args.gpu)
+    torch.cuda.set_device(int(args.gpu))
     device = torch.device(f'cuda:{args.gpu}')
     print(f"is_available cuda : {torch.cuda.is_available()}")
     print(f"current use : cuda({torch.cuda.current_device()})\n")
