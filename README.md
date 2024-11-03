@@ -77,4 +77,8 @@
 
 ![image](https://github.com/user-attachments/assets/c739c8dc-16aa-4f40-80d2-900b74e33e52)
 
+## License
+
+This project is released under the Apache 2.0 license.
+
 ## How to use
