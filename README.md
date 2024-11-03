@@ -64,7 +64,8 @@
 | Cascade-RCNN | Swin-L | Object365 | 2 | O | 1024x1024 | 0.6875 |
 
 
-[자세한 정보](https://github.com/Batwan01/2024-Autonomous-Driving-Artificial-Intelligence-Challenge/issues/21)
+[모델 성능표](https://github.com/Batwan01/2024-Autonomous-Driving-Artificial-Intelligence-Challenge/issues/21)
+
 This project is released [OpenMMLab](https://github.com/open-mmlab)
 
 ## Ensemble
