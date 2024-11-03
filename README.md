@@ -79,6 +79,6 @@
 
 ## License
 
-This project is released [under the Apache 2.0 license.](https://github.com/open-mmlab)
+This project is released [OpenMMLab](https://github.com/open-mmlab)
 
 ## How to use
