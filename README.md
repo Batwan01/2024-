@@ -60,7 +60,7 @@
 | Co-DINO | Swin-L | Object365,COCO | 3 | X | 1024x1024 | 0.6833 |
 | Co-DINO | Swin-L | Object365,COCO | 1 | O | 1024x1024 | 0.6990 |
 | Cascade-RCNN | Swin-L | COCO | 5 | X | 1024x1024 | 0.6819 |
-| Cascade-RCNN | Swin-L | COCO | 2 | X | 1024x1024 | - |
+| Cascade-RCNN | Swin-L | COCO | 2 | X | 1024x1024 | 0.6390 |
 | Cascade-RCNN | Swin-L | COCO | 2 | O | 1024x1024 | 0.6875 |
 
 
