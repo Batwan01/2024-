@@ -30,7 +30,7 @@ image_size = (
     1024,
     1024,
 )
-load_from = '../checkpoints/Co-DINO_2ep.pth'
+load_from = '../checkpoints/Co-DINO(2ep).pth'
 load_pipeline = [
     dict(type='LoadImageFromFile'),
     dict(type='LoadAnnotations', with_bbox=True, with_mask=True),
@@ -1266,4 +1266,4 @@ visualizer = dict(
     vis_backends=[
         dict(type='LocalVisBackend'),
     ])
-work_dir = '../work_dirs/co_dino_5scale_swin_l_16xb1_16e_o365tococo_custom_3ep'
+work_dir = '../work_dirs/co_dino_3ep'
