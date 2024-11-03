@@ -21,13 +21,6 @@
 - "자율주행 기술개발 혁신사업"을 통해 구축한 자율주행 공개 데이터셋을 활용하여 자율주행차-인프라 연계형 AI 기술 개발
 - 주행환경에서 카메라 센서를 이용하여 신호등 인식
 
-
-## :clipboard: 일정
-| 날짜 | 구분 |
-| :-:| :-: |
-| 11.08 | 심사 결과 |
-| 11월 중순 | 시상식 |
-
 ##  :sunglasses:팀원 소개
 
 | [![](https://avatars.githubusercontent.com/jung0228)](https://github.com/jung0228) | [![](https://avatars.githubusercontent.com/chan-note)](https://github.com/chan-note) | [![](https://avatars.githubusercontent.com/batwan01)](https://github.com/batwan01) | [![](https://avatars.githubusercontent.com/jhuni17)](https://github.com/jhuni17) |
