@@ -82,9 +82,11 @@
 | 앙상블 기법 | Co-DINO 1ep over | Co-DINO 1ep | Co-DINO 2ep | Co-DINO 3ep | Cascade-RCNN 5ep | Cascade-RCNN 2ep  | Cascade-RCNN 2ep over | Test mAP50 |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | NMW |  | o | o | o |  | o |  | 0.6945 |
-| NMW | o |  |  | o | o | o |  | 0.7344 |
-| Class-wise | o | o | o | o | o |  | o | 0.7362 |
+| NMW | o |  |  | o | o |  | o | 0.7344 |
+| Classwise | o | o | o | o | o |  | o | 0.7362 |
 
 ## Results
+
+![image](https://github.com/user-attachments/assets/a0ab8ef4-6a5d-47fe-812d-d08bd0ab19f1)
 
 ## How to use
