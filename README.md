@@ -71,6 +71,7 @@
 | Cascade-RCNN | Swin-L | Object365 | 5 | X | 1024x1024 | 0.6819 |
 | Cascade-RCNN | Swin-L | Object365 | 2 | X | 1024x1024 |  |
 | Cascade-RCNN | Swin-L | Object365 | 2 | O | 1024x1024 | 0.6875 |
+
 [자세한 정보](https://github.com/Batwan01/2024-Autonomous-Driving-Artificial-Intelligence-Challenge/issues/21)
 
 ## Ensemble
