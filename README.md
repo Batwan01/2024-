@@ -66,15 +66,16 @@
 
 ## Models
 
-| Model | Backbone | Epochs | oversampling | Image size | val mAP50 |
-| --- | --- | --- | --- | --- | --- |
-| yolo11x | SwinL | 20 | X | 1280x1280 | 0.60108 |
-| Co-DINO | Swin-L | 1 | X | 1024x1024 | 0.6407 |
-| Co-DINO | Swin-L | 2 | X | 1024x1024 | 0.6821 |
-| Co-DINO | Swin-L | 3 | X | 1024x1024 | 0.6833 |
-| Cascade-RCNN | Swin-L | 5 | X | 1024x1024 | 0.6819 |
-| Cascade-RCNN | Swin-L |  | O | 1024x1024 | 0.6875 |
-| Co-DINO | Swin-L |  | O | 1024x1024 | 0.6990 |
+| Model | Backbone | Pretrained dataset | Epochs | oversampling | Image size | val mAP50 |
+| --- | --- | --- | --- | --- | --- | --- |
+| yolo | C3K2 | yolo11x | 20 | X | 1280x1280 | 0.6010 |
+| Co-DINO | Swin-L | Object365 | 1 | X | 1024x1024 | 0.6407 |
+| Co-DINO | Swin-L | Object365 | 2 | X | 1024x1024 | 0.6821 |
+| Co-DINO | Swin-L | Object365 | 3 | X | 1024x1024 | 0.6833 |
+| Co-DINO | Swin-L | Object365 |  | O | 1024x1024 | 0.6990 |
+| Cascade-RCNN | Swin-L | Object365 | 5 | X | 1024x1024 | 0.6819 |
+| Cascade-RCNN | Swin-L | Object365 | 2 | X | 1024x1024 |  |
+| Cascade-RCNN | Swin-L | Object365 | 2 | O | 1024x1024 | 0.6875 |
 
 ## Ensemble
 
